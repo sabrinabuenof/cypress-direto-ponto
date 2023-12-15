@@ -8,8 +8,18 @@ describe('Transações', () => {
 
         cy.get("tbody tr td.description").should("have.text", "Freela")
     });
+
+    it('Cadastrar uma saída', () => {
+        cy.visit("https://devfinance-agilizei.netlify.app/#")
+    
+        criarTransacao("Cinema", -45)
+    
+        cy.get("tbody tr td.description").should("have.text", "Cinema")
+    });
    
 });
+
+
 
 function criarTransacao(descricao, valor) {
     cy.contains("Nova Transação").click()
