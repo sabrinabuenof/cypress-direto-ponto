@@ -24,10 +24,20 @@ beforeEach(() => {
     
         cy.get("tbody tr td.description").should("have.text", "Cinema")
     });
+
+    it('Excluir transação', () => {
+       criarTransacao("Freela", 100) 
+       criarTransacao("Mesada", 10) 
+
+       cy.contains(".description", "Freela")
+        .parent()
+        .find('img')
+        .click()
+
+        cy.get('tbody tr').should("have.length", 1)
+    });
    
 });
-
-
 
 function criarTransacao(descricao, valor) {
     cy.contains("Nova Transação").click()
